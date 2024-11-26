@@ -77,7 +77,14 @@ console.log(typeof +n1);
 console.log(parseInt(n1));
 console.log(parseInt(n2));
 console.log(parseFloat(n1));
-console.log(parseFloat(n3));
+console.log(Number.parseFloat(n3));
+
+console.log(Number.isInteger(n1));
+
+//Revisar si el cambio a numero a ido bien
+console.log(Number.isNaN(parseInt(n3)));
+//window.alert("hola");
+
 
 
 
