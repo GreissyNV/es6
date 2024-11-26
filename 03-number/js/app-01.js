@@ -82,7 +82,8 @@ console.log(Number.parseFloat(n3));
 console.log(Number.isInteger(n1));
 
 //Revisar si el cambio a numero a ido bien
-console.log(Number.isNaN(parseInt(n3)));
+console.log(Number.isNaN(Number.parseInt(n3)));
+
 //window.alert("hola");
 
 
