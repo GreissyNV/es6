@@ -47,6 +47,6 @@ if (haceSol) {
 }
 
 let accion2 = haceSol ? "Voy a la playa!" : "Me quedo en casa";
-console.log(accion);
+console.log(accion2);
 
 console.log("Fin del script");
