@@ -26,6 +26,27 @@ if (haceSol){
     console.log("No se que hacer..");
 }
 
+//Se pueden anidar
+if (haceSol) {
+    console.log("Voy a la playa!");
+    if (tengoHambre) {
+        console.log("Como un bocadillo");
+    }
+}
 
+//Operadores aritméticos + - * / % ++ --
+//Operadores de comparación == != === !== > > >= <=
+//Operadores lógicos && || !
+
+//Operador ternario
+let accion = "";
+if (haceSol) {
+    accion = "Voy a la playa!";
+} else {
+    accion = "Me quedo en casa";
+}
+
+let accion2 = haceSol ? "Voy a la playa!" : "Me quedo en casa";
+console.log(accion);
 
 console.log("Fin del script");
