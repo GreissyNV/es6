@@ -20,3 +20,6 @@ function imprimirInfo(producto) {
     }
 }
 imprimirInfo(producto);
+
+//Hacer una copia de un objeto
+
