@@ -8,52 +8,34 @@ const ctx = canvas.getContext("2d");
 const GAME_W = 640;
 const GAME_H = 360;
 
-const enemies = [ 
-{
+const enemy = {
     x: 100,
     y: 100,
     w: 40,
     h: 40,
     color: "#ff0000",
     speedY: 1, 
-},
-{
-    x: 100,
-    y: 100,
-    w: 40,
-    h: 40,
-    color: "#ff0000",
-    speedY: 2, 
-},
-{
-    x: 100,
-    y: 100,
-    w: 40,
-    h: 40,
-    color: "#ff0000",
-    speedY: 3, 
-},
-]
+};
 
 function update(){
     //Movemos el enemy
-    enemies[0].y += enemies[0].speedY;
+    enemy.y += enemy.speedY;
     //Chequear la colision con el borde inferior 
-    if (enemies[0].y + enemies[0].h >= GAME_H) {
-        enemies[0].y = GAME_H - enemies[0].h;
-        enemies[0].speedY = enemies[0].speedY * -1;
-    } else if(enemies[0].y <= 0) {
+    if (enemy.y + enemy.h >= GAME_H) {
+        enemy.y = GAME_H - enemy.h;
+        enemy.speedY = enemy.speedY * -1;
+    } else if(enemy.y <= 0) {
         //chequear la colision con el borde superior
-        enemies[0].y = 0;
-        enemies[0].speedY = enemies[0].speedY * -1;
+        enemy.y = 0;
+        enemy.speedY = enemy.speedY * -1;
     }
 // console.log(enemy);
 }
 
 function draw(){
     ctx.clearRect(0, 0, GAME_W, GAME_H)
-ctx.fillStyle = enemies[0].color;
-ctx.fillRect(enemies[0].x, enemies[0].y, enemies[0].w, enemies[0].h);
+ctx.fillStyle = enemy.color;
+ctx.fillRect(enemy.x, enemy.y, enemy.w, enemy.h);
 
 }
 
