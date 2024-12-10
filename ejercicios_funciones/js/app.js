@@ -100,26 +100,33 @@
 
 
 //6
-function getComunes(arrA, arrB) {
-  const comunes = [];
-for (let i = 0; i < arrA.length; i++) {
-const elemento = arrA[i];
-if(arrB.includes(elemento)) {
-  comunes.push(elemento);
-  }
- }
-return comunes;
-}
-//Hay dos tipos de listas en JS, el Map y Set
-const a = [2, 3, 5, 7];
-const b = [3, 6, 9, 5];
-console.log(getComunes(a, b)); //deberia devolver [3, 5]
+// function getComunes(arrA, arrB) {
+//   const comunes = [];
+// for (let i = 0; i < arrA.length; i++) {
+// const elemento = arrA[i];
+// if(arrB.includes(elemento)) {
+//   comunes.push(elemento);
+//   }
+//  }
+// return comunes;
+// }
+// //Hay dos tipos de listas en JS, el Map y Set
+// const a = [2, 3, 5, 7];
+// const b = [3, 6, 9, 5];
+// console.log(getComunes(a, b)); //deberia devolver [3, 5]
 
 //7
-function sumArray() {
-  const lista = [2, 3, 5, 7];
-  for (let i = 0; i < )
-}
+function sumArray[i] {
+  const lista = [2, 3, 4, 5];
+} for (let i = 0; i < array.length; i++) {
+  const element = array[i];
+} if (sumArray[i] > pares) {
+  pares = lista[i];
+  }
+return suma;
+
+  
+
 
 //function getMaxValue(numList) {
   //   let max = 0;
@@ -142,24 +149,24 @@ function sumArray() {
 
 
 //10 Funcion recursiva:
-functionfactorial(n) {
-//el factorial 0 o 1 es 1
-if(n === 0 || n === 1) {
-  return 1;
-  }
-return n * factorial(n - 1);
-}
-debugger;
-const m = factorial(8);
-alert("El factorial de 8 es: " + m);
+// functionfactorial(n) {
+// //el factorial 0 o 1 es 1
+// if(n === 0 || n === 1) {
+//   return 1;
+//   }
+// return n * factorial(n - 1);
+// }
+// debugger;
+// const m = factorial(8);
+// alert("El factorial de 8 es: " + m);
 
 
 
 
-function saludar() {
-  console.log("Feliz Navidad");
-  saludar();
-}
+// function saludar() {
+//   console.log("Feliz Navidad");
+//   saludar();
+// }
 
-debugger;
-saludar(); //cuidado con las funciones recursivas , llenan la pila de memoria
+// debugger;
+// saludar(); //cuidado con las funciones recursivas , llenan la pila de memoria
