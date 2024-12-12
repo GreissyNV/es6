@@ -50,3 +50,43 @@ const empresas = [
   { name: "Innovación Sigma", category: "Tecnología", start: 2011, end: 2016 },
   { name: "Market Kappa", category: "Minorista", start: 1981, end: 1989 },
 ];
+
+
+//Crear un array nuevo solo con las empresas minoristas(filter)
+// const minoristas = empresas.filter((empresa) => {
+//     return empresa.category === "Minorista";
+// });
+
+// console.log(minoristas);
+
+//Obtener las empresas que empezaron en 1980 o despues y cerraron en 2005 o antes
+const empresas1 = empresas.filter((empresa) => {
+    return empresa.start >= 1980 && empresa.end <= 2005;
+});
+
+console.log(empresas1);
+
+// https://www.youtube.com/watch?v=qqR1enOceVg
+
+//Obtener las empresas que tienen 10 años o más
+const empresas2 = empresas.filter((empresa) => {
+    return empresa.start += 1980 && empresa.end <= 2005;
+});                                 
+
+console.log(empresas2);
+
+
+// empresas.miFilter = function (callback) {
+//   const array = [];
+//   for (let i = 0; i < empresas.length; i++) {
+//     if(callback(empresas[i])){
+//       array.push(empresas[i])
+//     }
+//   }
+//   return array;
+// };
+
+// empresas.miFilter((e) => {
+//   return e.category === "Minorista";
+// });
+
