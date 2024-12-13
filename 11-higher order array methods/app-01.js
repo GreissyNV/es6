@@ -90,3 +90,34 @@ console.log(empresasViejunas);
 //   return e.category === "Minorista";
 // });
 
+
+//map: Devuelve un array nuevo con lo que devuelva el callback
+//name: "Financiera Alpha", category: "Finanzas", start: 1981, end: 2004
+
+const empresasYearsofActivity = empresas.map((empresa) => {
+const newEmpresa = {
+  name: empresa.name,
+  years: empresa.end - empresa.start,
+};
+return newEmpresa;
+});
+console.log(empresasYearsofActivity);
+
+//Se pide un array nuevo solo con el nombre de las empresas, pero en mayusculas
+// [{name: "Financiera Alpha"}, {name: "Tienda Beta"}, {name: "Motores Gamma"}, ]
+const empresasMayus = empresas.map((empresa) => {
+  return { name: empresa.name.toUpperCase()};
+  });
+  console.log(empresasMayus);
+
+//Imprimir con document.write lo siguiente para cada empresa:
+//"<p>Finanzas <strong> 'Financiera Alpha' </strong> te desea <em>Feliz navidad</em>.</p>
+//<sm> Contigo desde 1981.</sm> " (con foreach)
+
+empresas.forEach((empresa) => {
+  const text = `<p>${empresa.category} <strong> '${empresa.name}' </strong>
+   te desea <em>Feliz navidad</em>.</p>
+   <sm> Contigo desde ${empresa.start}.</sm><hr>`;
+   document.write(text);
+});
+
