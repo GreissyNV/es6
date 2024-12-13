@@ -69,11 +69,11 @@ console.log(empresas1);
 // https://www.youtube.com/watch?v=qqR1enOceVg
 
 //Obtener las empresas que tienen 10 años o más
-const empresas2 = empresas.filter((empresa) => {
-    return empresa.start += 1980 && empresa.end <= 2005;
+const empresasViejunas = empresas.filter((empresa) => {
+    return empresa.end - empresa.start >=10;
 });                                 
 
-console.log(empresas2);
+console.log(empresasViejunas);
 
 
 // empresas.miFilter = function (callback) {
