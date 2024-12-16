@@ -121,3 +121,34 @@ empresas.forEach((empresa) => {
    document.write(text);
 });
 
+//Los metodos se pueden concatenar segun el valor de retorno
+//const nums = [2, 4, 65, 4, 5, 6, 9, 3, 5];
+
+const raizYdoble = nums.map((num) => Math.sqrt(num)).map((num) => num * 2);
+console.log(raizYdoble); //version corta
+
+const raiz = nums.map ((num) => {
+  return Math.sqrt(num);
+})
+const doble = raizYdoble.map((num) => {
+return num * 2;
+}); //metodo largo en 2 pasos
+
+//Crear un array nuevo con solo los numeros pares y doblados usando filter y map
+const paresDobles = nums.filter((num) => num % 2 ===0).map((num) => num *2); //lleva el retuns implicito
+
+const saludar = function(nombre) {
+  return "Hola " + nombre;
+};
+const saludar2 = nombre => "Hola " + nombre;
+console.log(saludar("Santa Claus"));
+console.log(saludar2("Santa Claus"));
+
+const texto = "Feliz Navidad"
+
+//IIFE
+(function(_texto) {
+  const texto = _texto;
+    console.log(texto);
+})("Hola soy una funcion IIFE");
+
