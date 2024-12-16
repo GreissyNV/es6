@@ -56,19 +56,29 @@ const personas = [
 //ciudad de cada persona
 // Resultado esperado: Alice (Nueva York), Bob (Londres), Charlie
 //(París), David (Tokio), Eve (Sídney)
-
-
-
 personas.forEach((persona) => {
-    console.log(`${persona.nombre} ($persona.direccion.ciudad})`);
+    console.log(`${persona.nombre} (${persona.direccion.ciudad})`);
 });
-
 
 
 // Ejercicio 2: Crea un nuevo array con objetos que contengan el nombre,
 //la edad y la ciudad de cada persona
 // Resultado esperado: [{ nombre: 'Alice', edad: 28, ciudad: 'Nueva
 //York' }, ...]
+
+personas.map((persona) => {
+console.log(`${persona.nombre} (${persona.edad.ciudad})`);
+});
+
+
+
+//     const empresasMayus = empresas.map((empresa) => {
+//         return { name: empresa.name.toUpperCase()};
+//         });
+//         console.log(empresasMayus);
+      
+
+
 // Ejercicio 3: Filtra las personas que tienen hobbies que incluyen
 //'lectura'
 // Resultado esperado: [{ nombre: 'Alice', ... }]
