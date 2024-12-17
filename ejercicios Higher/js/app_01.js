@@ -66,31 +66,61 @@ personas.forEach((persona) => {
 // Resultado esperado: [{ nombre: 'Alice', edad: 28, ciudad: 'Nueva
 //York' }, ...]
 
-personas.map((persona) => {
-console.log(`${persona.nombre} (${persona.edad.ciudad})`);
-});
+ const newPersonas = personas.map((persona) => {
+    const newPersona = {
+        nombre: persona.nombre,
+        edad: persona.edad,
+        ciudad: persona.direccion.ciudad,
+    };
+    return newPersona
+ });
+ console.log(newPersonas);
 
-
-
-//     const empresasMayus = empresas.map((empresa) => {
-//         return { name: empresa.name.toUpperCase()};
-//         });
-//         console.log(empresasMayus);
-      
 
 
 // Ejercicio 3: Filtra las personas que tienen hobbies que incluyen
 //'lectura'
 // Resultado esperado: [{ nombre: 'Alice', ... }]
+
+const personasLectoras = personas.filter((persona) => {
+    return persona.hobbies.includes("lectura");
+});
+    
+
 // Ejercicio 4: Calcula la suma de las edades de todas las personas
 //usando reduce
 // Resultado esperado: 146
+
+const totalEdades = personas.reduce((total, persona) => {
+return (total += persona.edad);
+}, 0);
+console.log("la suma de las edades es: " + totalEdades);
+   
+
+
 // Ejercicio 5: Comprueba si al menos una persona es menor de 21 años
 //usando some
 // Resultado esperado: true/false
+
+
+let persMenor21 = personas.some((persona) => persona > 21);
+console.log(persMenor21);
+//ejemplo profe:
+//const hayMenorDeEdad = personas.some((persona) => {return persona.edad <21;});
+
+
+
 // Ejercicio 6: Encuentra la persona con la edad exacta de 29 años
 //usando find
 // Resultado esperado: { nombre: 'Eve', ... }
+const persona29 = personas.find((persona) => persona.edad === 29);
+console.log(persona29);
+
+
+
 // Ejercicio 7: Ordena las personas por edad de forma descendente usando
 //sort
 // Resultado esperado: [{ nombre: 'Bob', edad: 35, ... }, ...]
+
+const personasEdadDesc = personas.toSorted((a,b) => b.edad - a.edad);
+console.log(personasEdadDesc);
