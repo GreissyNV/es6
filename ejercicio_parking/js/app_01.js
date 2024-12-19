@@ -25,13 +25,30 @@ class Vehiculo {
       this.vehiculos = new Map();
   
       //crear las plazas del parking
-      for (let i = 1; i < totalPlazas; i++) {
+      for (let i = 1; i <= totalPlazas; i++) {
+        //TODO plazas pares zona B impares zona A
+        let letra = "A";
+        if(i % 2 === 0) {
+          letra = "B";
+        }
+        const newPlaza = new Plaza(letra, i);
         this.plazas.push(new Plaza(i));
       }
     }
     registrarVehiculo(matricula) {
       //Buscar plaza libre
       const plazaLibre = this.plazas.find((plaza) => !plaza.ocupada);
+      if(!plazaLibre) {
+        console.log(`El parking esta lleno!!`)
+        return;
+      }
+
+
+      //La matricula no puede repetirse
+      if(this.vehiculos.has(matricula)) {
+        console.log(`La matricula ${matricula} ya esta registrada`)
+        return; // if else vs early return
+      }
       //TODO sinó hay plazas no se puede aparcar
   
       const horaEntrada = new Date();
@@ -40,7 +57,17 @@ class Vehiculo {
       plazaLibre.ocupar();
   
       this.vehiculos.set(matricula, { vehiculo, plaza: plazaLibre });
+      console.log(``)
+      
     }
   }
   
-  const parking = new Parking(10, 6);
+  const parking = new Parking(4, 6);
+
+  //zona testing
+  function registroVehiculos () {
+    const matriculas = ["1234ABC", "111AAA", "222BBB"];
+    matriculas.forEach((matricula) => {
+      parking.registrarVehiculo(matricula);
+    })
+  }
