@@ -12,15 +12,47 @@ function getKeyCodeInnerHTML(e) {
                                 </div>`;
       }
       function getKeyCodeCreateNodes(e) {
-        //TODO obtener la misma funcionalidad que la funcion anterior
+        //TODO obtener la mima funcionalidad que la funcion anterior
         //pero usando createElement, createTextNode y appendChild
         //Sin innerHtml
         const insertDiv = document.querySelector("#insert");
-        const div = document.createElement("div");
-        /**
-         * El codigo restante aqui....
-         */
-        insertDiv.appendChild(div);
+        insertDiv.textContent = "";
+      
+        const keyCodesArr = [
+          { name: "e.key", evento: e.key },
+          { name: "e.keyCode", evento: e.keyCode },
+          { name: "e.code", evento: e.code },
+        ];
+      
+        keyCodesArr.forEach((keyInfo) => {
+          const div = createDiv(keyInfo.name, keyInfo.evento);
+          insertDiv.appendChild(div);
+        });
+      
+        //   const keyCodes = {
+        //     "e.key": e.key,
+        //     "e.keyCode": e.keyCode,
+        //     "e.code": e.code,
+        //   };
+      
+        //   for (let key in keyCodes) {
+        //     const div = createDiv(key, keyCodes[key]);
+        //     insertDiv.appendChild(div);
+        //   }
       }
       // window.addEventListener("keyup", getKeyCodeInnerHTML);
       window.addEventListener("keyup", getKeyCodeCreateNodes);
+      
+      function createDiv(_keyText, _valueText) {
+        const div = document.createElement("div");
+        div.classList.add("key");
+      
+        const small = document.createElement("small");
+        const keyText = document.createTextNode(_keyText);
+        small.appendChild(keyText);
+      
+        const valueText = document.createTextNode(_valueText);
+        div.appendChild(valueText);
+        div.appendChild(small);
+        return div;
+      }
