@@ -76,3 +76,8 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 console.log("Runnnnnn!!!");
+
+window.addEventListener("resize", () => {
+  document.querySelector("h1").textContent = `${window.innerWidth} x ${window.innerHeight}`
+});
+
