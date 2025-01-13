@@ -65,19 +65,26 @@
 // });
 
 /********* Window events *********/
-
 window.addEventListener("load", () => {
   console.log("Página cargada");
 });
 
-//Si pones el script al principio siempre tienes que poner esto, para asegurarte de que la pagina carga bien
 window.addEventListener("DOMContentLoaded", () => {
   console.log("DOM generado!!");
 });
 
-console.log("Runnnnnn!!!");
+console.log("Ruuuunnnn!!!");
 
 window.addEventListener("resize", () => {
-  document.querySelector("h1").textContent = `${window.innerWidth} x ${window.innerHeight}`
+  document.querySelector(
+    "h1"
+  ).textContent = `${window.innerWidth} x ${window.innerHeight}`;
 });
 
+window.addEventListener("scroll", () => {
+  console.log(`Scroll: ${window.scrollY}`);
+});
+
+//Està también la observer api para detectar el scroll o
+//Ejemplos de librerias como https://michalsnik.github.io/aos/ para lanzar animaciones
+//al hacer scroll
