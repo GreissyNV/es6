@@ -1,37 +1,40 @@
-//Traer las referencias de los elementos del DOM
+//Traer las refeéncias de los elementos del DOM
 const itemForm = document.querySelector("#item-form");
 const itemInput = document.querySelector("#item-input");
 const itemList = document.querySelector("#item-list");
 const btnClear = document.querySelector("#clear");
 const itemFilter = document.querySelector("#filter");
-const items = itemList.querySelectorAll("li");
+
 /**
- * 
- * @param {SubmitEvent} evt 
+ *
+ * @param {SubmitEvent} evt
  */
-function addItem(evt){
+function addItem(evt) {
   evt.preventDefault(); //Previene el evento submit del formulario
-  
-  //Validar que el input no este vacio
-  const newItem = itemInput.ValueMax.trim();
-  //si el campo esta vacio '' avisamos al usuario y salimos de la funcion
-if(newItem === '' ){
-  alert("Por favor añade un texto");
-  return;
-}
+
+  //Validar que el input no esté vacio
+  const newItem = itemInput.value.trim();
+  //Si el campo está vacio avisamos al usuario y salimos de la funcion
+  if (newItem === "") {
+    alert("Por favor añade un tecto");
+    return;
+  }
+
   //Inserta el elemento en el DOM
   const li = createNewItem(newItem);
   itemList.appendChild(li);
 
+  //Refrescamos el UI
+  checkUI();
   //Limpiar el campo de texto
   itemInput.value = "";
 }
 
-/** Funciones para la creacion de los elementos de la lista **/
+/*********     Funciones para la creación de los elementos de la lista **********/
 function createNewItem(textItem) {
-  const li = document.createElement("li"); 
-  const text = document.createTextNode(textItem); 
-  li.appendChild(text); 
+  const li = document.createElement("li");
+  const text = document.createTextNode(textItem);
+  li.appendChild(text);
 
   const button = createButton("remove-item btn-link text-red");
   li.appendChild(button);
@@ -53,29 +56,35 @@ function createIcon(clases) {
   return icon;
 }
 
+function removeItem(evt) {
+  if (evt.target.parentElement.classList.contains("remove-item")) {
+    if (confirm("Vas ha eliminar el item")) {
+      evt.target.parentElement.parentElement.remove();
+      checkUI();
+    }
+  }
+}
 
-function removeItem(evt){
-if(evt.target.parentElement.classList.contains("remove-item")){
- evt.target.parentElement.parentElement.remove();
- }
-};
+function clearItems() {
+  // itemList.innerHTML = "";
+  if (confirm("Vas ha eliminar toda la lista")) {
+    while (itemList.firstChild) {
+      itemList.removeChild(itemList.firstChild);
+    }
+    checkUI();
+  }
+}
 
-function clearItems(){
-  console.log("Funciona")
-  //itemList.innerHTML ="";
- while(itemList.firstChild !== null){ //no hace falta poner null
-  itemList.removeChild(itemList.firstChild);
- }
-};
-
-function checkUI(){
-if(items.length === 0) {
-  btnClear.style.display = "none";
-  itemFilter.style.display = "none";
- }
-};
-
-
+function checkUI() {
+  const items = itemList.querySelectorAll("li");
+  if (items.length === 0) {
+    btnClear.style.display = "none";
+    itemFilter.style.display = "none";
+  } else {
+    btnClear.style.display = "block";
+    itemFilter.style.display = "block";
+  }
+}
 
 //Event Listeners
 itemForm.addEventListener("submit", addItem);
