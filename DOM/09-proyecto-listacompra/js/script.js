@@ -103,8 +103,11 @@ function checkUI() {
 
 /***************   Local Storage functions ****************/
 function addItemToLocalStorage(item) {
+  //Traer los datos del localStorage
   const itemsFromLocalStorage = getItemsFromLocalStorage();
+  //Añadir el nuevo item al array
   itemsFromLocalStorage.push(item);
+  //Convertir el array a texto y lo guardamos
 
   localStorage.setItem("lista", JSON.stringify(itemsFromLocalStorage));
 }
