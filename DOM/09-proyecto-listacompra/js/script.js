@@ -6,21 +6,18 @@ const btnClear = document.querySelector("#clear");
 const itemFilter = document.querySelector("#filter");
 
 /**
- * 
- * @description Obtiene los datos del localStorage y refresca la lista
+ * @description Obtiene los datos del LStorage y refresca la lista
  */
-
-function displayItems(){
-const lista = getItemsFromLocalStorage();
-lista.forEach((item => {
-const li = createNewItem(item);
-itemList.appendChild(li);
-}))
-checkUI();
+function displayItems() {
+  const lista = getItemsFromLocalStorage();
+  lista.forEach((item) => {
+    const li = createNewItem(item);
+    itemList.appendChild(li);
+  });
+  checkUI();
 }
-
-
- /*
+/**
+ *
  * @param {SubmitEvent} evt
  */
 function addItem(evt) {
@@ -31,6 +28,13 @@ function addItem(evt) {
   //Si el campo está vacio avisamos al usuario y salimos de la funcion
   if (newItem === "") {
     alert("Por favor añade un tecto");
+    return;
+  }
+
+  //si el elemeto existe no se añade
+  if (checkIfItemExists(newItem) !== -1) {
+    alert("El item ya está en la lista");
+    itemInput.value = "";
     return;
   }
 
@@ -47,18 +51,17 @@ function addItem(evt) {
   itemInput.value = "";
 }
 
-//TODO actualizar elLStorage al eliminar un item
-
 function removeItem(evt) {
   if (evt.target.parentElement.classList.contains("remove-item")) {
     if (confirm("Vas ha eliminar el item")) {
+      removeItemFromLocalStorage(
+        evt.target.parentElement.parentElement.textContent
+      );
       evt.target.parentElement.parentElement.remove();
       checkUI();
     }
   }
 }
-
-//TODO actualizar el LStorage al eliminar todos los items
 
 function clearItems() {
   // itemList.innerHTML = "";
@@ -66,10 +69,11 @@ function clearItems() {
     while (itemList.firstChild) {
       itemList.removeChild(itemList.firstChild);
     }
+    //limpiar el localStorage
+    localStorage.removeItem("lista");
     checkUI();
   }
 }
-
 function filterItems(evt) {
   const text = evt.target.value.toLowerCase();
   const items = itemList.querySelectorAll("li");
@@ -110,9 +114,10 @@ function createIcon(clases) {
   icon.className = clases;
   return icon;
 }
-
-
-
+/**
+ * @description Habilita o desabilita los elementos graficos según si
+ * hay items en la lista o no
+ */
 function checkUI() {
   const items = itemList.querySelectorAll("li");
   if (items.length === 0) {
@@ -128,12 +133,11 @@ function checkUI() {
 function addItemToLocalStorage(item) {
   //Traer los datos del localStorage
   const itemsFromLocalStorage = getItemsFromLocalStorage();
-  //Añadir el nuevo item al array
+  //añadir el nuevo item al array
   itemsFromLocalStorage.push(item);
   //Convertir el array a texto y lo guardamos
   localStorage.setItem("lista", JSON.stringify(itemsFromLocalStorage));
 }
-
 function getItemsFromLocalStorage() {
   let itemsFromLocalStorage;
   if (localStorage.getItem("lista") === null) {
@@ -152,26 +156,27 @@ function getItemsFromLocalStorage() {
   return JSON.parse(items);
   */
 }
-
-function removeItemFomLocalStorage(item){
+function removeItemFromLocalStorage(item) {
   //Traer los datos del localStorage
   let itemsFromLocalStorage = getItemsFromLocalStorage();
   //eliminar el elemento del array
-  itemsFromLocalStorage.filter((i) => i !== item);
-   //Convertir el array a texto y lo guardamos
-   localStorage.setItem("lista", JSON.stringify(itemsFromLocalStorage));
+  itemsFromLocalStorage = itemsFromLocalStorage.filter((i) => i !== item);
+  //Convertir el array a texto y lo guardamos
+  localStorage.setItem("lista", JSON.stringify(itemsFromLocalStorage));
 }
-
-//funcion que devuelve el indice de un elemento si existe en el lista o -1 si no existe
-function ckeckIfItemExists(item){
-  //Traer los datos del localstorage 
+/**
+ *
+ * @param {String} item
+ * @returns el indice del item si lo ecuentra, sinó -1
+ */
+function checkIfItemExists(item) {
+  //Traer los datos del localStorage
   const itemsFromLocalStorage = getItemsFromLocalStorage();
   //Mira si existe
   return itemsFromLocalStorage.indexOf(item);
 }
 
-//TODO function update
-
+//TODO funcion update
 
 //Event Listeners
 itemForm.addEventListener("submit", addItem);
