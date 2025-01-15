@@ -6,7 +6,21 @@ const btnClear = document.querySelector("#clear");
 const itemFilter = document.querySelector("#filter");
 
 /**
- *
+ * 
+ * @description Obtiene los datos del localStorage y refresca la lista
+ */
+
+function displayItems(){
+const lista = getItemsFromLocalStorage();
+lista.forEach((item => {
+const li = createNewItem(item);
+itemList.appendChild(li);
+}))
+checkUI();
+}
+
+
+ /*
  * @param {SubmitEvent} evt
  */
 function addItem(evt) {
@@ -24,10 +38,51 @@ function addItem(evt) {
   const li = createNewItem(newItem);
   itemList.appendChild(li);
 
+  //Añadir el elemento al localStorage
+  addItemToLocalStorage(newItem);
+
   //Refrescamos el UI
   checkUI();
   //Limpiar el campo de texto
   itemInput.value = "";
+}
+
+//TODO actualizar elLStorage al eliminar un item
+
+function removeItem(evt) {
+  if (evt.target.parentElement.classList.contains("remove-item")) {
+    if (confirm("Vas ha eliminar el item")) {
+      evt.target.parentElement.parentElement.remove();
+      checkUI();
+    }
+  }
+}
+
+//TODO actualizar el LStorage al eliminar todos los items
+
+function clearItems() {
+  // itemList.innerHTML = "";
+  if (confirm("Vas ha eliminar toda la lista")) {
+    while (itemList.firstChild) {
+      itemList.removeChild(itemList.firstChild);
+    }
+    checkUI();
+  }
+}
+
+function filterItems(evt) {
+  const text = evt.target.value.toLowerCase();
+  const items = itemList.querySelectorAll("li");
+
+  items.forEach((item) => {
+    const itemName = item.firstChild.textContent.toLowerCase();
+
+    if (itemName.includes(text)) {
+      item.style.display = "flex";
+    } else {
+      item.style.display = "none";
+    }
+  });
 }
 
 /*********     Funciones para la creación de los elementos de la lista **********/
@@ -56,39 +111,7 @@ function createIcon(clases) {
   return icon;
 }
 
-function removeItem(evt) {
-  if (evt.target.parentElement.classList.contains("remove-item")) {
-    if (confirm("Vas ha eliminar el item")) {
-      evt.target.parentElement.parentElement.remove();
-      checkUI();
-    }
-  }
-}
 
-function clearItems() {
-  // itemList.innerHTML = "";
-  if (confirm("Vas ha eliminar toda la lista")) {
-    while (itemList.firstChild) {
-      itemList.removeChild(itemList.firstChild);
-    }
-    checkUI();
-  }
-}
-
-function filterItems(evt) {
-  const text = evt.target.value.toLowerCase();
-  const items = itemList.querySelectorAll("li");
-
-  items.forEach((item) => {
-    const itemName = item.firstChild.textContent.toLowerCase();
-
-    if (itemName.includes(text)) {
-      item.style.display = "flex";
-    } else {
-      item.style.display = "none";
-    }
-  });
-}
 
 function checkUI() {
   const items = itemList.querySelectorAll("li");
@@ -108,7 +131,6 @@ function addItemToLocalStorage(item) {
   //Añadir el nuevo item al array
   itemsFromLocalStorage.push(item);
   //Convertir el array a texto y lo guardamos
-
   localStorage.setItem("lista", JSON.stringify(itemsFromLocalStorage));
 }
 
@@ -131,10 +153,29 @@ function getItemsFromLocalStorage() {
   */
 }
 
+function removeItemFomLocalStorage(item){
+  //Traer los datos del localStorage
+  let itemsFromLocalStorage = getItemsFromLocalStorage();
+  //eliminar el elemento del array
+  itemsFromLocalStorage.filter((i) => i !== item);
+   //Convertir el array a texto y lo guardamos
+   localStorage.setItem("lista", JSON.stringify(itemsFromLocalStorage));
+}
+
+//funcion que devuelve el indice de un elemento si existe en el lista o -1 si no existe
+function ckeckIfItemExists(item){
+  //Traer los datos del localstorage 
+  const itemsFromLocalStorage = getItemsFromLocalStorage();
+  //Mira si existe
+  return itemsFromLocalStorage.indexOf(item);
+}
+
+//TODO function update
+
+
 //Event Listeners
 itemForm.addEventListener("submit", addItem);
 itemList.addEventListener("click", removeItem);
 btnClear.addEventListener("click", clearItems);
 itemFilter.addEventListener("input", filterItems);
-
-checkUI();
+document.addEventListener("DOMContentLoaded", displayItems);
