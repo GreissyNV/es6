@@ -27,12 +27,12 @@ const fetchProducts =  async () => {
                 const {url: img } = product.fields.image[0];
                 const formatPrice = price / 100;
                 const listElement = `<a class="single-product" href="product.html?id=${id}">
-            <img class="single-product-img img" src="${img}" alt="${title}"/>
-            <footer>
-              <h5 class="name">${title}</h5>
-              <span class="price">${formatPrice}€/span>
-            </footer>
-          </a>`;
+                                        <img class="single-product-img img" src="${img}" alt="${title}"/>
+                                        <footer>
+                                        <h5 class="name">${title}</h5>
+                                        <span class="price">${formatPrice}€/span>
+                                         </footer>
+                                        </a>`;
             // console.log(id, title, price, img);
             return listElement;
                     })
@@ -54,7 +54,6 @@ const fetchProducts =  async () => {
             const data = await fetchProducts();
             displayProducts(data);
         };
-        
         start();
         console.log("El script sigue");
         
