@@ -10,11 +10,26 @@ export const agregarAlCarrito = (id, cantidad) => {
     return;
   }
 
+  const productoEnCarrito = carrito.find((item) => item.id === id);
+  if (productoEnCarrito) {
+    productoEnCarrito.cantidad += cantidad;
+    console.log(
+      `cantidad actualizada: ${productoEnCarrito.cantidad} x ${producto.nombre}`
+    );
+    return;
+  }
+
   carrito.push({
     ...producto,
     cantidad,
   });
   console.log(`${cantidad} x ${producto.nombre} añadido al carrito`);
 };
+//Devuelve el arry del carrito
+export const getCarrito = () => carrito;
 
-//TODO los productos del carrito
+//Obtener los productos del carrito
+export const mostrarCarrito = () => {
+  console.log("Carrito:");
+  console.table(carrito);
+};
