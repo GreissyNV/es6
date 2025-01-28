@@ -14,7 +14,7 @@ export const agregarAlCarrito = (id, cantidad) => {
   if (productoEnCarrito) {
     productoEnCarrito.cantidad += cantidad;
     console.log(
-      `cantidad actualizada: ${productoEnCarrito.cantidad} x ${producto.nombre}`
+      `Cantidad actualizada: ${productoEnCarrito.cantidad} x ${producto.nombre}`
     );
     return;
   }
