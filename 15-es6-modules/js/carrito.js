@@ -1,14 +1,20 @@
-import{ getProductoById } from './productos.js';
-import { formatPrice } from './utils';
+import { getProductoById } from "./productos.js";
+import { formatPrice } from "./utils.js";
 
 let carrito = [];
-export default agregarAlCarrito = (id, cantidad) => {
-const producto = getProductoById(id);
-if (!producto) {
-    console.error("Producto no encontrado");
+
+export const agregarAlCarrito = (id, cantidad) => {
+  const producto = getProductoById(id);
+  if (!producto) {
+    console.log("Producto no encontrado");
     return;
-} 
+  }
 
-
-carrito.push({ ...producto, cantidad });
+  carrito.push({
+    ...producto,
+    cantidad,
+  });
+  console.log(`${cantidad} x ${producto.nombre} añadido al carrito`);
 };
+
+//TODO los productos del carrito
